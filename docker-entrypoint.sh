@@ -3,9 +3,11 @@
 SSHPORT="${SSHPORT:-22}"
 SSHPASSWORD="${SSHPASSWORD:-root}"
 
-# set sshd config: allow password login and use custom port
+# set sshd config: allow password login, use custom port
+#     and allow listen on all interfaces when reverse tunneling
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config
 sed -i s/#Port.*/Port\ $SSHPORT/ /etc/ssh/sshd_config
+sed -i s/GatewayPorts.*/GatewayPorts\ yes/ /etc/ssh/sshd_config
 
 # add root password
 echo "root:$SSHPASSWORD" | chpasswd
