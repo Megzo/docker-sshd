@@ -8,6 +8,7 @@ SSHPASSWORD="${SSHPASSWORD:-root}"
 sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config
 sed -i s/#Port.*/Port\ $SSHPORT/ /etc/ssh/sshd_config
 sed -i s/GatewayPorts.*/GatewayPorts\ yes/ /etc/ssh/sshd_config
+sed -i s/AllowTcpForwarding.*/AllowTcpForwarding\ yes/ /etc/ssh/sshd_config
 
 # add root password
 echo "root:$SSHPASSWORD" | chpasswd
